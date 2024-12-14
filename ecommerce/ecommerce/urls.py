@@ -21,7 +21,7 @@ urlpatterns = [
 
     # cart app
 
-    # path('cart/', include('cart.urls')),
+    path('cart/', include('cart.urls')),
 
 ]
 

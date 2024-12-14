@@ -51,7 +51,6 @@ class Product(models.Model):
         verbose_name_plural = 'products'
 
 
-# ZEBY NIE BYLO PRODUKT(2) itp
     def __str__(self):
 
         return self.title
