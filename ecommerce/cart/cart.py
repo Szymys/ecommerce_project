@@ -72,8 +72,10 @@ class Cart():
             yield item
 
 
+# DO LICZENIA CALEJ KWOTY KOSZYKA
+    def get_total(self):
 
-
+        return sum(Decimal(item['price']) * item['qty'] for item in self.cart.values())
 
 
 

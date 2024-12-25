@@ -40,7 +40,9 @@ INSTALLED_APPS = [
 
     'store',    #Django app
 
-    'cart'      #Django app
+    'cart',      #Django app
+
+    'mathfilters', #BIBLIOTEKA DO PYTHONA DODAJACA OPERACJE MATEMATYCZNE
 ]
 
 MIDDLEWARE = [
