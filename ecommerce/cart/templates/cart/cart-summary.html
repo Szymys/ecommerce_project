@@ -64,7 +64,7 @@
 
                   &nbsp; 
                   
-                  <select id="">
+                  <select id="select{{product.id}}">
                   
                     <option selected>
                   
@@ -84,7 +84,7 @@
                   
                   <br> <br>
 
-                  <button type="button" id="update-button"
+                  <button type="button" data-index="{{product.id}}"
                     class="btn btn-primary btn-sm update-button">
                     Update
                   
@@ -92,7 +92,7 @@
                   
                   &nbsp;
 
-                  <button type="button" id="delete-button" data-index="{{product.id}}"
+                  <button type="button" data-index="{{product.id}}"
                     class="btn btn-danger btn-sm delete-button">
                     Delete
         
@@ -130,6 +130,127 @@
     <br>
 
  </main>
+
+<script>
+
+  //AJAX -  NA ZYWO ODSWIEZA MI KOSZYK
+  //GUZIK DO USUWANIA
+  $(document).on('click', '.delete-button', function(e){
+
+
+    // CSRF TOEKN TUTAJ A NIE JAK NA KURSIE ???!!!
+        e.preventDefault();
+        csrfmiddlewaretoken:"{{ csrf_token }}"
+
+        $.ajax({
+
+            type: 'POST',
+            url: '{% url "cart-delete" %}',
+            data: {
+
+                product_id: $(this).data('index'),
+                csrfmiddlewaretoken: "{{ csrf_token }}",
+                action: 'post'
+
+
+            },
+
+            success: function(json){
+
+                //console.log(json)
+                
+                location.reload();
+
+                //ILOSC W KOSZYKU AKTUALIZUJE
+                document.getElementById("cart-qty").textContent = json.qty
+
+                document.getElementById("cart-qty").textContent = json.total
+
+
+            },
+
+            error: function(xhr, errmsg, err){
+                
+
+            }
+
+
+
+        });
+
+
+
+    })
+
+
+
+  //AJAX -  NA ZYWO ODSWIEZA MI KOSZYK
+  //GUZIK DO UPDATOWANIA
+  $(document).on('click', '.update-button', function(e){
+
+
+    // CSRF TOEKN TUTAJ A NIE JAK NA KURSIE ???!!!
+        e.preventDefault();
+        csrfmiddlewaretoken:"{{ csrf_token }}"
+
+        var theproductid = $(this).data('index');
+
+        $.ajax({
+
+            type: 'POST',
+            url: '{% url "cart-update" %}',
+            data: {
+
+                product_id: $(this).data('index'),
+                product_quantity: $('#select' + theproductid + ' option:selected').text(),
+                csrfmiddlewaretoken: "{{ csrf_token }}",
+                action: 'post'
+
+
+            },
+
+            success: function(json){
+
+                //console.log(json)
+                
+                location.reload();
+
+                //ILOSC W KOSZYKU AKTUALIZUJE
+                document.getElementById("cart-qty").textContent = json.qty
+
+                document.getElementById("cart-qty").textContent = json.total
+
+
+            },
+
+            error: function(xhr, errmsg, err){
+                
+
+            }
+
+
+
+        });
+
+
+
+    })
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
 
 
 
