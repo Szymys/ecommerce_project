@@ -38,9 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'store',    #Django app
+    'store',    #apka z django
 
-    'cart',      #Django app
+    'cart',      #apka z django
+
+    'account',   #apka z django
 
     'mathfilters', #BIBLIOTEKA DO PYTHONA DODAJACA OPERACJE MATEMATYCZNE
 ]
