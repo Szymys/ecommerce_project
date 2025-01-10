@@ -1,0 +1,61 @@
+
+{% comment %} nawiazanie do calego sklepu {% endcomment %}
+{% include "store/base.html" %}
+
+
+{% load static %}
+
+
+{% load crispy_forms_tags %}
+
+
+
+{% block content %}
+
+
+
+
+    <body>
+
+        <br>
+        
+        {% comment %} wyglad pasujacy do reszty {% endcomment %}
+        <div class="container bg-gray-800 shadow-md p-5 form layout">
+
+            <h3> Login to your account </h3>
+
+
+            <br>
+            <br>
+
+            <form method="POST" autocomplete="off">
+
+                {% csrf_token %}
+                
+                <br>
+
+                {{form.username|as_crispy_field}}
+
+                <br>
+
+                {{form.password|as_crispy_field}}
+                
+                {% comment %} {{form}}   <--  brzydka forma bez szablonow crispy {% endcomment %}
+                
+
+                <br>
+
+                <button type="submit" class="btn btn-secondary btn-lg w-100 btn-clock p-2"> &nbsp; Login </button>
+
+
+            </form>
+
+
+
+
+
+    </body>
+
+
+
+{% endblock  %}

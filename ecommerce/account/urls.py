@@ -26,5 +26,21 @@ urlpatterns = [
 
 
 
+# LOGOWANIE I WYLOGOWANIE
+
+    path('my-login', views.my_login, name='my-login'),
+
+
+# WYLOGOWANIE
+
+    # path()
+
+
+# PANEL
+    path('dashboard', views.dashboard, name='dashboard')
+
+
+
+
 ]
 
