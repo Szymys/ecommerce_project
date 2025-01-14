@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 
 
-from .forms import CreateUserForm, LoginForm
+from .forms import CreateUserForm, LoginForm, UpdateUserForm
 
 # DO LOGOWANIA
 from django.contrib.auth.models import User, auth
 from django.contrib.auth import authenticate, login, logout
 
+from django.contrib.auth.decorators import login_required
 
 
 def register(request):
@@ -88,21 +89,62 @@ def my_login(request):
 
         return render(request, 'account/my-login.html', context=context)
 
-# WYLOGOWANIE
 
+
+# WYLOGOWANIE
 def user_logout(request):
 
         auth.logout(request)
 
+        return redirect("store")
 
 
 
 # PANEL
+@login_required(login_url='my-login')
 def dashboard(request):
        
        return render(request, 'account/dashboard.html')
 
 
 
+# ZARZADZANIE KONTEM
+@login_required(login_url='my-login')
+def profile_management(request):
 
+# AKTUALIZACJA MAILA I NICKU
+        if request.method == 'POST':
+
+                user_form = UpdateUserForm(request.POST, instance=request.user)
+
+                if user_form.is_valid():
+
+                        user_form.save()
+
+                        return redirect('dashboard')
+
+
+        user_form = UpdateUserForm(instance=request.user)
+
+        context = {'user_form':user_form}
+
+        return render(request, 'account/profile-management.html', context=context)
+
+
+
+# USUWANIE KONTA
+@login_required(login_url='my-login')
+def delete_account(request):
+
+
+        user = User.objects.get(id=request.user.id)
+
+        if request.method == 'POST':
+               
+               user.delete()
+
+               return redirect('store')
+
+
+        return render(request, 'account/delete-account.html')
 

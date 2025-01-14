@@ -22,7 +22,7 @@
         {% comment %} wyglad pasujacy do reszty {% endcomment %}
         <div class="container bg-gray-800 shadow-md p-5 form layout">
 
-            <h3> Login to your account </h3>
+            <h3> Update your account </h3>
 
 
             <br>
@@ -34,24 +34,26 @@
                 
                 <br>
 
-                {{form.username|as_crispy_field}}
+                {{user_form.username|as_crispy_field}}
 
                 <br>
 
-                {{form.password|as_crispy_field}}
+                {{user_form.email|as_crispy_field}}
                 
                 {% comment %} {{form}}   <--  brzydka forma bez szablonow crispy {% endcomment %}
                 
 
                 <br>
 
-                <button type="submit" class="btn btn-secondary btn-lg w-100 btn-clock p-2"> &nbsp; Login </button>
+                <button type="submit" class="btn btn-secondary btn-lg w-100 btn-clock p-2"> &nbsp; Update your account </button>
 
 
             </form>
 
+            <div class="container bg-gray-800 shadow-md p-5 form layout">
 
-
+                <h3> Delete your account </h3>
+                <a class="btn btn-primary navbar-btn text-red" type="button"  href="{% url 'delete-account' %}"> Delete account </a>
 
 
     </body>

@@ -50,3 +50,28 @@ class LoginForm(AuthenticationForm):
 
 
 
+# AKTUALIZACJA DANYCH UZYTKOWNIKA
+
+class UpdateUserForm(forms.ModelForm):
+
+    password = None
+
+    class Meta:
+
+        model = User
+
+        fields = ['username', 'email']
+        exclude = ['password1', 'password1']
+
+
+
+
+
+
+
+
+
+
+
+
+
