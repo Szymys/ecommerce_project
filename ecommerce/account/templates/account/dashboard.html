@@ -1,0 +1,49 @@
+
+{% comment %} nawiazanie do calego sklepu "stopka u gory" {% endcomment %}
+{% include "store/base.html" %}
+
+
+{% load static %}
+
+
+{% load crispy_forms_tags %}
+
+
+
+{% block content %}
+
+<a class="btn btn-alert navbar-btn text-white" type="button"  href="{% url 'user-logout' %}"> Logout </a>
+
+<body>
+
+    <br>
+    
+    {% comment %} wyglad pasujacy do reszty {% endcomment %}
+    <div class="container bg-gray-800 shadow-md p-5 form layout">
+
+        <h3> Welcome, {{user}} </h3>
+
+        <p> "Buy the best sportswear in the world!" </p>
+
+        <br>
+        <br>
+        <a class="btn btn-primary navbar-btn text-white" type="button"  href="{% url 'profile-management' %}"> Profile management </a>
+        <br>
+        <br>
+        <a class="btn btn-primary navbar-btn text-white" type="button"  href="{% url 'user-logout' %}"> My orders </a>
+        <br>
+        <br>
+        <a class="btn btn-primary navbar-btn text-white" type="button"  href="{% url 'user-logout' %}"> Logout </a>
+
+
+
+
+
+
+</body>
+
+
+{% endblock %}
+
+
+

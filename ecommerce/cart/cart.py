@@ -91,7 +91,14 @@ class Cart():
 
         products = Product.objects.filter(id__in=all_product_ids)
 
-        cart = self.cart.copy()
+
+
+        
+        #cart = self.cart.copy()  <---- to nie bo problem przy update w koszyku
+        import copy
+        cart = copy.deepcopy(self.cart)
+
+
 
         for product in products:
 

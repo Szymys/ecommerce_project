@@ -38,12 +38,20 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'store',    #Django app
+    'store',    #apka z django
 
-    'cart',      #Django app
+    'cart',      #apka z django
+
+    'account',   #apka z django
 
     'mathfilters', #BIBLIOTEKA DO PYTHONA DODAJACA OPERACJE MATEMATYCZNE
+
+    'crispy_forms',  #biblioteka do formularzy
 ]
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'  #zestaw szablonow do renderowania formularzy
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
