@@ -9,6 +9,10 @@ from django.contrib.auth import authenticate, login, logout
 
 from django.contrib.auth.decorators import login_required
 
+# KUPOWANIE
+from payment.forms import ShippingForm
+from payment.models import ShippingAddress
+
 
 def register(request):
 
@@ -147,4 +151,51 @@ def delete_account(request):
 
 
         return render(request, 'account/delete-account.html')
+
+
+# kupowanie widok
+@login_required(login_url='my-login')
+def manage_shipping(request):
+       
+        try:
+              
+                shipping = ShippingAddress.objects.get(user=request.user.id)
+
+
+        except ShippingAddress.DoesNotExist:
+              
+                shipping = None
+
+        form = ShippingForm(instance=shipping)
+       
+
+        if request.method == 'POST':
+              
+                form = ShippingForm(request.POST, instance=shipping)
+
+                if form.is_valid():
+                     
+                        shipping_user = form.save(commit=False)
+
+                        shipping_user.user = request.user
+
+                        shipping_user.save()
+
+                        return redirect('dashboard')
+
+        context = {'form':form}
+
+        return render(request, 'account/manage-shipping.html', context=context)
+
+
+
+
+
+
+
+
+
+
+
+
 
