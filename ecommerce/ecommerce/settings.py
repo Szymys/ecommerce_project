@@ -38,15 +38,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'store',    #apka z django
+    'store',    #"podstawa"
 
-    'cart',      #apka z django
+    'cart',      #karta 
 
-    'account',   #apka z django
+    'account',   #log/rejestr/management user itp
 
     'mathfilters', #BIBLIOTEKA DO PYTHONA DODAJACA OPERACJE MATEMATYCZNE
 
     'crispy_forms',  #biblioteka do formularzy
+
+    'payment',  #kupowanie
 ]
 
 
