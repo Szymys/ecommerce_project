@@ -182,7 +182,7 @@ def manage_shipping(request):
                         shipping_user.save()
 
                         return redirect('dashboard')
-
+                        
         context = {'form':form}
 
         return render(request, 'account/manage-shipping.html', context=context)
