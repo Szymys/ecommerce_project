@@ -48,5 +48,10 @@ urlpatterns = [
     path('delete-account', views.delete_account, name='delete-account'),
 
 
+# KUPOWANIE
+    path('manage-shipping', views.manage_shipping, name='manage-shipping'),
+
+
+
 ]
 
