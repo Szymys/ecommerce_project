@@ -1,6 +1,7 @@
 # Ecommerce Website (Django/javascript)
 
-![Django Ecommerce Store]([https://github.com/omarreda22/Django-eCommerce-Store/blob/main/core/static/img/e_shop.PNG](https://github.com/Szymys/ecommerce_project/blob/main/img/shop.png))
+![Django Ecommerce Store](https://raw.githubusercontent.com/Szymys/ecommerce_project/main/img/shop.png)
+
 
 Full-featured shopping cart with PayPal & credit/debit payments
 
