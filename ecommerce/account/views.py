@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-
+from django.contrib.auth.models import User
 from .forms import CreateUserForm, LoginForm, UpdateUserForm
 
 # DO LOGOWANIA
@@ -13,6 +13,15 @@ from django.contrib.auth.decorators import login_required
 from payment.forms import ShippingForm
 from payment.models import ShippingAddress
 
+# WERYFIKACJA MAILA
+from django.contrib.sites.shortcuts import get_current_site
+from . token import user_tokenizer_generate
+from django.template.loader import render_to_string
+
+from django.utils.encoding import force_str, force_bytes
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+
+from django.contrib import messages
 
 def register(request):
 
@@ -24,13 +33,30 @@ def register(request):
 
         if form.is_valid():
             
-            form.save()
+                user = form.save()
 
-            # PRZEADRESOWANIE DO APKI STORE czyli wracamy na storne glowna
-            return redirect('store')
+                user.is_active = False
+                                
+                user.save()
+
+                # WYSYLANIE MAILA Z LINKIEM DO WERYFIKACJI      
+                        
+                current_site = get_current_site(request)
+
+                subject = 'Weryfikacja konta'
+
+                message = render_to_string('account/registration/email-verification.html', {
+                        'user': user,
+                        'domain': current_site.domain,
+                        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                        'token': user_tokenizer_generate.make_token(user),
+                })
+
+                user.email_user(subject=subject, message=message)
+
+                return redirect('email-verification-sent')
         
-
-
+        
     context = {'form':form}
 
 
@@ -42,28 +68,43 @@ def register(request):
 
 
 
+def email_verification(request, uidb64, token):
 
-def email_verification(request):
+        # UnikALNY ID UZYTKOWNIKA
+        unique_id = force_str(urlsafe_base64_decode(uidb64))
 
-        pass
+        user = User.objects.get(pk=unique_id)
+
+        # SUKCES WERYFIKACJI
+        if user and user_tokenizer_generate.check_token(user, token):
+
+                user.is_active = True
+
+                user.save()
+
+                return redirect('email-verification-success')
+        # BŁĄD WERYFIKACJI
+        else:
+
+                return redirect('email-verification-failed')
 
 
 
 def email_verification_sent(request):
 
-        pass
+        return render(request, 'account/registration/email-verification-sent.html') 
 
 
 
 def email_verification_success(request):
 
-        pass
+        return render(request, 'account/registration/email-verification-success.html')
 
 
 
 def email_verification_failed(request):
 
-        pass
+        return render(request, 'account/registration/email-verification-failed.html')
 
 
 
