@@ -12,7 +12,6 @@
 
 {% block content %}
 
-<a class="btn btn-alert navbar-btn text-white" type="button"  href="{% url 'user-logout' %}"> Logout </a>
 
 <body>
 
@@ -21,24 +20,34 @@
     {% comment %} wyglad pasujacy do reszty {% endcomment %}
     <div class="container bg-gray-800 shadow-md p-5 form layout">
 
-        <h3> Welcome, {{user}} </h3>
-
+        <h3 class="d-flex align-items-center"><i class='fas fa-user-circle fa-2x'></i> Welcome, {{user}}  </h3>
+        
         <p> "Buy the best sportswear in the world!" </p>
+        <hr>
+        <br>
+        <br>
 
-        <br>
-        <br>
+        <p> Update or delete your account: </p>
         <a class="btn btn-primary navbar-btn text-white" type="button"  href="{% url 'profile-management' %}"> Profile management </a>
+        <hr>
         <br>
         <br>
+
+        <p> Track all of your orders here: </p>
         <a class="btn btn-primary navbar-btn text-white" type="button"  href="{% url 'user-logout' %}"> My orders </a>
+        <hr>
         <br>
         <br>
+
+        
         <a class="btn btn-primary navbar-btn text-white" type="button"  href="{% url 'manage-shipping' %}"> Manage address </a>
+        <hr>
         <br>
         <br>
+
         <a class="btn btn-primary navbar-btn text-white" type="button"  href="{% url 'user-logout' %}"> Logout </a>
 
-
+    </div>    
 
 
 
