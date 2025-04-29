@@ -155,8 +155,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  #backend do wysylania maili w konsoli
 
 
-
-
+# DO WYSYLANIA MAILI GMAIL 
+# EMAIL_HOST = 'smtp.gmail.com'  #serwer smtp
+# EMAIL_PORT = '587'  #port do wysylania maili
+# EMAIL_USE_TLS = 'True'  #uzycie tls
+# EMAIL_HOST_USER = 'JAKIS_MAIL@gmail.com'  # <--- EMAIL DO WYSYLANIA 
+# EMAIL_HOST_PASSWORD = 'JAKIES_HASLO'  # <--- HASLO DO MAILA
 
 
 

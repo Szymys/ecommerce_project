@@ -1,4 +1,36 @@
-<h1> A verification link was sent to ur email </h1>
+
+{% include "store/base.html" %}
 
 
-<p> please check email </p>
+{% load static %}
+
+
+{% block content %}
+
+
+<body>
+
+    <br>
+    
+    {% comment %} wyglad pasujacy do reszty {% endcomment %}
+    <div class="container bg-gray-800 shadow-md p-5 form layout text-center">
+        
+     
+    <i class="fa fa-envelope fa-5x"></i> {% comment %} <- fontawesome.com ikonka{% endcomment %}
+    <br>
+    <br>
+    <h3> <strong> A verification link was sent to ur email </strong> </h3>
+
+    <p> please check email </p>
+
+    </div>
+    
+
+</body>
+
+
+{% endblock %}
+
+
+
+
