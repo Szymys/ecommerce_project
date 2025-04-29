@@ -14,6 +14,8 @@
 
 	  
         
+        <!-- FontAwesome 5 CDN (zawiera darmowe ikonki typu solid) -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 
         
@@ -116,20 +118,41 @@
             
             <ul class="navbar-nav ms-auto">
 
+                {% if user.is_authenticated %}
 
-                <li class="nav-item">
-            
-                    <a class="btn btn-alert navbar-btn text-white" type="button"  href="{% url 'register' %}"> Register </a>
+                    <li class="nav-item">
+                
+                        <a class="btn btn-alert navbar-btn text-white" type="button"  href="{% url 'dashboard' %}"> Dashboard </a>
 
-                </li>
+                    </li>
 
+                {% else %} 
+                    
+                    <li class="nav-item">
+                    
+                        <a class="btn btn-alert navbar-btn text-white" type="button"  href="{% url 'register' %}"> Register </a>
 
-                <li class="nav-item">
+                    </li>
+                
+                {% endif %}
 
-                    <a class="btn btn-alert navbar-btn text-white" type="button"  href="{% url 'my-login' %}"> Login </a>
+                {% if user.is_authenticated %}
 
-                </li>
+                    <li class="nav-item">
 
+                        <a class="btn btn-alert navbar-btn text-white" type="button"  href="{% url 'user-logout' %}"> Logout </a>
+
+                    </li>
+                
+                {% else %}
+                    
+                    <li class="nav-item">
+
+                        <a class="btn btn-alert navbar-btn text-white" type="button"  href="{% url 'my-login' %}"> Login </a>
+
+                    </li>
+
+                {% endif %}
 
                 &nbsp; &nbsp; &nbsp;
 
@@ -144,7 +167,7 @@
 
                         &nbsp;
 
-                        <div id="cart-qty" class="d-inline-flex">
+                        <span id="cart-qty" class="d-inline-flex">
 
                             {% with qty_amount=cart|length %}
 
@@ -162,6 +185,7 @@
 
                             {% endwith %}
 
+                        </span>
 
                     </a>
 
