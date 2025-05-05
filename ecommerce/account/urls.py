@@ -4,6 +4,8 @@ from django.contrib.auth import views as auth_views
 
 from . import views
 
+
+
 urlpatterns = [
 
 
@@ -51,6 +53,20 @@ urlpatterns = [
 # KUPOWANIE
     path('manage-shipping', views.manage_shipping, name='manage-shipping'),
 
+
+# ZMIANA HASLA:
+
+# 1 mail
+    path('reset_password', auth_views.PasswordResetView.as_view(), name='reset_password'),
+
+# 2
+    path('reset_password_sent', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
+
+# 3 link
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+
+# 4 sukces
+    path('reset_password_complete', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 
 
 ]
