@@ -57,16 +57,16 @@ urlpatterns = [
 # ZMIANA HASLA:
 
 # 1 mail
-    path('reset_password', auth_views.PasswordResetView.as_view(), name='reset_password'),
+    path('reset_password', auth_views.PasswordResetView.as_view(template_name="account/password/password-reset.html"), name='reset_password'),
 
-# 2
-    path('reset_password_sent', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
+# 2 wyslanie
+    path('reset_password_sent', auth_views.PasswordResetDoneView.as_view(template_name="account/password/password-reset-sent.html"), name='password_reset_done'),
 
 # 3 link
-    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="account/password/password-reset-form.html"), name='password_reset_confirm'),
 
 # 4 sukces
-    path('reset_password_complete', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    path('reset_password_complete', auth_views.PasswordResetCompleteView.as_view(template_name="account/password/password-reset-complete.html"), name='password_reset_complete'),
 
 
 ]
