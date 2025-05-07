@@ -47,6 +47,11 @@
 
                 <button type="submit" class="btn btn-secondary btn-lg w-100 btn-clock p-2"> &nbsp; Login </button>
 
+                {% comment %} WALIDACJA WIADOMOSC POD SPODEM CZEMU ERROR {% endcomment %}
+                {{form.non_field_errors}}
+                {{form.username.errors}}
+                {{form.password.errors}}
+
                 <br>
                 <br>
                 <a href="{% url 'reset_password' %}"> Forgotten your password? </a>

@@ -21,7 +21,10 @@ from django.template.loader import render_to_string
 from django.utils.encoding import force_str, force_bytes
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 
+# WIADOMOSCI DJANGO
 from django.contrib import messages
+
+
 
 def register(request):
 
@@ -128,6 +131,8 @@ def my_login(request):
                         
                                 auth.login(request, user)
 
+                                messages.success(request, 'Login success!')
+
                                 return redirect("dashboard")
                         
         context = {'form':form}
@@ -140,6 +145,8 @@ def my_login(request):
 def user_logout(request):
 
         auth.logout(request)
+
+        messages.success(request, 'Logout success!')
 
         return redirect("store")
 
@@ -167,6 +174,8 @@ def profile_management(request):
 
                         user_form.save()
 
+                        messages.success(request, 'Profile updated successfully!')
+
                         return redirect('dashboard')
 
 
@@ -187,6 +196,8 @@ def delete_account(request):
         if request.method == 'POST':
                
                user.delete()
+
+               messages.error(request, 'Account deleted successfully!')
 
                return redirect('store')
 
