@@ -16,8 +16,8 @@ services:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-         - .:/app  # ← to pozwala edytować kod na żywo
-         - ./static:/app/static  # ← a to montuje statyczne pliki
+         - .:/app  # ← EDYTOWANIE KODU NA ZYWO
+         - ./static:/app/static  # ← MONTUJE STATYCZNE PLIKI
          - .:/code
     ports:
       - "8000:8000"
