@@ -1,0 +1,60 @@
+# 🌍 Ogólne
+__pycache__/
+*.py[cod]
+*.log
+*.sqlite3
+*.env
+.env.*
+
+# 🐍 Python virtual environments
+venv/
+env/
+ENV/
+.venv/
+.idea/
+*.swp
+
+# 🐘 PostgreSQL volumes (jeśli kiedyś zmienisz na bind-mounty)
+*.pgsql
+
+# ⚙️ VSCode settings
+.vscode/
+
+# 🐳 Docker
+*.pid
+*.tar
+*.bak
+*.backup
+docker-compose.override.yml
+
+# 🧪 Testy i coverage
+.coverage
+htmlcov/
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# 📁 Django stuff
+staticfiles/
+media/
+db.sqlite3
+*.pot
+*.mo
+
+# 📦 Node (jeśli kiedyś front dorzucisz)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 🔍 PyCharm (jakbyś czasem odpalał)
+*.iml
+.idea/
+
+# 📦 Build artifacts
+build/
+dist/
+*.egg-info/
+*.egg
