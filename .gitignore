@@ -58,3 +58,22 @@ build/
 dist/
 *.egg-info/
 *.egg
+
+# Środowisko wirtualne
+venv/
+
+# Pliki edytorów
+.vscode/
+
+# Pliki środowiskowe
+.env
+
+# Pliki tymczasowe i backupy
+__pycache__/
+*.py[cod]
+*.log
+*.bak
+
+# Pliki bazy danych SQLite
+db.sqlite3
+
