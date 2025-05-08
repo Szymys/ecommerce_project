@@ -77,3 +77,9 @@ __pycache__/
 # Pliki bazy danych SQLite
 db.sqlite3
 
+__pycache__/
+*.pyc
+*.pyo
+
+
+
