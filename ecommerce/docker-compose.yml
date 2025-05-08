@@ -1,18 +1,18 @@
-version: '3.9'
+version: '3.9'    # WERSJA DOCKER-COMPOSE
 
 services:
   db:
-    image: postgres:16
+    image: postgres:16  # TWORZE KONTENER DB NAZWA, UZYTKOWNIK, HASLO ITP
     environment:
       POSTGRES_DB: ecommerce_db
       POSTGRES_USER: ecommerce_user
       POSTGRES_PASSWORD: securepassword
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data  # ZAPISUJE DANE NA DYSKU
     ports:
       - "5432:5432"
 
-  web:
+  web:                      # TWORZE KONTENER APLIKACJI
     build: .
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
