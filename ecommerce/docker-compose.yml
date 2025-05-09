@@ -1,8 +1,15 @@
 version: '3.9'    # WERSJA DOCKER-COMPOSE
 
+
+
 services:
+
+
+
   db:
     image: postgres:16  # TWORZE KONTENER DB NAZWA, UZYTKOWNIK, HASLO ITP
+    env_file:
+      - .env  # ← PLIK Z HASLEM 
     environment:
       POSTGRES_DB: ecommerce_db
       POSTGRES_USER: ecommerce_user
@@ -12,17 +19,30 @@ services:
     ports:
       - "5432:5432"
 
+
+
+
+
   web:                      # TWORZE KONTENER APLIKACJI
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: gunicorn ecommerce.wsgi:application --bind 0.0.0.0:8000
+    env_file:
+         - .env
     volumes:
-         - .:/app  # ← EDYTOWANIE KODU NA ZYWO
-         - ./static:/app/static  # ← MONTUJE STATYCZNE PLIKI
-         - .:/code
+        - .:/app
+        - ./static:/app/static
+        - ./media:/app/media
+        - ./staticfiles:/app/staticfiles
+    
     ports:
       - "8000:8000"
     depends_on:
       - db
+
+
+  
+
+
 
 volumes:
   postgres_data:

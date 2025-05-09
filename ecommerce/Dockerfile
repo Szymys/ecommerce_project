@@ -17,10 +17,13 @@ COPY requirements.txt .
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
+RUN pip install gunicorn
+
 # skopiuj caly kod projektu
 COPY . .
 
 
 
 # uruchamiaj serwer Django na porcie 8000
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["gunicorn", "ecommerce.wsgi:application", "--bind", "0.0.0.0:8000"]
+

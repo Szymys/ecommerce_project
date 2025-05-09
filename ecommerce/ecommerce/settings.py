@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,12 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ic04&ym2i(3o3es2rft%5pj_+q7oc#4w%77+i7347jy596r_at'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'dummy-fallback')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['szymys-ecommerce.online', 'www.szymys-ecommerce.online', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -145,8 +145,9 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = BASE_DIR / 'static/media'
+MEDIA_ROOT = BASE_DIR / 'media'
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 
