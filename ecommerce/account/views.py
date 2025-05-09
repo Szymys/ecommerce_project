@@ -24,6 +24,11 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 # WIADOMOSCI DJANGO
 from django.contrib import messages
 
+# ZAMOWIENIA DO TRACK_ORDERS
+from payment.models import Order, OrderItem
+
+
+# ********************************************************************************************
 
 
 def register(request):
@@ -240,6 +245,22 @@ def manage_shipping(request):
         return render(request, 'account/manage-shipping.html', context=context)
 
 
+
+
+# SLEDZENIE ZAMOWIEN
+@login_required(login_url='my-login')       # user jest zalogowany na track orders
+def track_orders(request):
+
+        try:
+                orders = OrderItem.objects.filter(user=request.user)
+
+                context = {'orders': orders}
+
+                return render(request, 'account/track-orders.html', context=context)
+
+        except:
+
+                return render(request, 'account/track-orders.html')
 
 
 

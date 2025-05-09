@@ -27,24 +27,25 @@
         <br>
         <br>
 
-        <p> Update or delete your account: </p>
+        <p><i class='fas fa-address-card' style='font-size:36px'></i> Update or delete your account: </p>
         <a class="btn btn-primary navbar-btn text-white" type="button"  href="{% url 'profile-management' %}"> Profile management </a>
         <hr>
         <br>
         <br>
 
-        <p> Track all of your orders here: </p>
-        <a class="btn btn-primary navbar-btn text-white" type="button"  href="{% url 'user-logout' %}"> My orders </a>
+        <p><i class='fas fa-shopping-cart' style='font-size:36px'></i> Track all of your orders here: </p>
+        <a class="btn btn-primary navbar-btn text-white" type="button"  href="{% url 'track-orders' %}"> My orders </a>
         <hr>
         <br>
         <br>
-
         
+        <p><i class='fas fa-home' style='font-size:36px'></i> Enter or update your address here: </p>
         <a class="btn btn-primary navbar-btn text-white" type="button"  href="{% url 'manage-shipping' %}"> Manage address </a>
         <hr>
         <br>
         <br>
 
+        <p><i class='fas fa-door-open' style='font-size:36px'></i></p>
         <a class="btn btn-primary navbar-btn text-white" type="button"  href="{% url 'user-logout' %}"> Logout </a>
 
     </div>    
