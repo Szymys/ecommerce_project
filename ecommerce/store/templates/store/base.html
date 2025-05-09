@@ -229,19 +229,48 @@
 
     <body>
 
+        <div id="content-wrapper">
 
-        {% block content %} 
-        
-        
-
-
-
-
-
+            {% block content %} 
             
-        {% endblock %}
+            
+
+
+
+
+
+                
+            {% endblock %}
     
+        </div>
         
+        {% comment %} ********  STOPKA NA DOLE ******** {% endcomment %}
+        <footer class="bg-dark text-light py-4 mt-5">
+
+
+        <div class="container text-center">
+            <p class="mb-2">A self-developed online store for sportswear, built using Django. The app is deployed on a VPS using Docker and a PostgreSQL database. It was created with the help of AI, online courses, and technical documentation – and it's still actively being developed.</p>
+            <div>
+
+            <a href="https://instagram.com/" target="_blank" class="text-light me-3">
+                <i class="fab fa-instagram"></i>
+            </a>
+
+            <a href="https://facebook.com/" target="_blank" class="text-light me-3">
+                <i class="fab fa-facebook"></i>
+            </a>
+
+            <a href="https://twitter.com/" target="_blank" class="text-light">
+                <i class="fab fa-twitter"></i>
+            </a>
+
+            </div>
+            <p class="mt-2 mb-0">&copy; 2025 Szymys-ecommerce.online</p>
+        </div>
+
+        </footer>
+
+
 
 
     </body>
