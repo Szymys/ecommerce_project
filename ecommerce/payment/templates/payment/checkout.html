@@ -1,185 +1,100 @@
-
-{% include "store/base.html" %}
-
+{% extends "store/base.html" %}
 
 {% load static %}
 
-
 {% block content %}
 
+    <br>
 
-    <body>
+    <div class="container bg-grey shadow-md p-5" style="width:500px; border-radius:20px;">
 
-        <br>
+        <form id="form">
 
-        <div class="container bg-grey shadow-md p-5" style="width:500px; border-radius:20px;">
+            <div>
 
-            <form id="form">
+                <h3>
+                    <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                    &nbsp; Complete your order
+                </h3>
 
-                <div>
+                <p>Please enter information below.</p>
 
-                    <h3> <i class="fa fa-chevron-circle-right" aria-hidden="true"></i> &nbsp; Complete your order </h3>
+                <hr>
+                <br>
 
-                    <p> Please enter information below. </p>
- 
-
-
-                    <hr>
-
-                    <br>
-
-                    <div class="form-field">
-                    
-                        <input class="form-control validate" id="name" type="text" placeholder="Full name*" autocomplete="off" value="" required>
-
-                    </div>
-
-
-                    <br>
-
-
-                    <div class="form-field">
-
-                        <input class="form-control validate" id="email" type="email" placeholder="Email address*" autocomplete="off" value="" required>
-
-                    </div>
-
-                    
-                    <br>
-
-                    
-                    <div class="form-field">
-
-                        <input class="form-control validate" id="address1" type="text" placeholder="Address 1*" autocomplete="off" value="" required>
-
-                    </div>
-
-
-                    <br>
-
-
-                    <div class="form-field">
-
-                        <input class="form-control validate" id="address2" type="text" placeholder="Address 2*" autocomplete="off" value="" required>
-
-                    </div>
-
-
-                    <br>
-
-
-                    <div class="form-field">
-
-                        <input class="form-control validate" id="city" type="text" placeholder="City*" autocomplete="off" value="" required>
-
-                    </div>
-
-
-                    <br>
-
-
-                    <div class="form-field">
-
-                        <input class="form-control" id="state" type="text" placeholder="State (Optional)" autocomplete="off" value="">
-
-                    </div>
-
-
-                    <br>
-
-
-                    <div class="form-field">
-
-                        <input class="form-control" id="zipcode" type="text" placeholder="Zip code (Optional)" autocomplete="off" value="">
-
-                    </div>
-            
+                <div class="mb-3">
+                    <input class="form-control" id="name" type="text" placeholder="Full name*" autocomplete="off" required>
                 </div>
 
-                <br>
+                <div class="mb-3">
+                    <input class="form-control" id="email" type="email" placeholder="Email address*" autocomplete="off" required>
+                </div>
 
+                <div class="mb-3">
+                    <input class="form-control" id="address1" type="text" placeholder="Address 1*" autocomplete="off" required>
+                </div>
 
+                <div class="mb-3">
+                    <input class="form-control" id="address2" type="text" placeholder="Address 2*" autocomplete="off">
+                </div>
 
-               <button id="complete-order" type="submit" class="btn btn-primary navbar-btn text-white"> &nbsp; Complete order </button>
-               
+                <div class="mb-3">
+                    <input class="form-control" id="city" type="text" placeholder="City*" autocomplete="off" required>
+                </div>
 
-                <br>
-                <br>
+                <div class="mb-3">
+                    <input class="form-control" id="state" type="text" placeholder="State (Optional)" autocomplete="off">
+                </div>
 
-                {% comment "" %} PAYPAL DO ZROBIENIA  {% endcomment %}
+                <div class="mb-3">
+                    <input class="form-control" id="zipcode" type="text" placeholder="Zip code (Optional)" autocomplete="off">
+                </div>
 
-                <div id="paypal-button-container"></div>
+            </div>
 
-                
+            <br>
 
-            </form>
+            <button id="complete-order" type="submit" class="btn btn-primary navbar-btn text-white">
+                &nbsp; Complete order
+            </button>
 
+            <br><br>
 
-        </div>
+            {% comment %} PAYPAL DO ZROBIENIA {% endcomment %}
+            <div id="paypal-button-container"></div>
 
-        
+        </form>
 
-        <br>
+    </div>
 
+    <br>
 
-    </body>
-
-    
     <script>
-
-
-    $(document).on('submit',  function(e){
-
+    $(document).on('submit', '#form', function(e){
         e.preventDefault();
 
         $.ajax({
-
             type: 'POST',
             url: '{% url "complete-order" %}',
             data: {
-
                 name: $('#name').val(),
                 email: $('#email').val(),
-
                 address1: $('#address1').val(),
                 address2: $('#address2').val(),
                 city: $('#city').val(),
-                
                 state: $('#state').val(),
                 zipcode: $('#zipcode').val(),
-
-
-                csrfmiddlewaretoken: "{{csrf_token}}",
+                csrfmiddlewaretoken: "{{ csrf_token }}",
                 action: 'post'
-
             },
-
             success: function(json){
-
-                //console.log(json)
-
                 window.location.replace("{% url 'payment-success' %}");
-
-
             },
-
             error: function(xhr, errmsg, err){
-
                 window.location.replace("{% url 'payment-failed' %}");
-
             }
-
         });
-
-
-    })
-    
-
-
-   </script>
-
-
-
-
+    });
+    </script>
 
 {% endblock %}

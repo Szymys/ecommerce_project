@@ -1,52 +1,32 @@
-
-{% comment %} nawiazanie do calego sklepu "stopka u gory" {% endcomment %}
-{% include "store/base.html" %}
-
+{% extends "store/base.html" %}
 
 {% load static %}
-
-
 {% load crispy_forms_tags %}
-
-
 
 {% block content %}
 
+    <br>
+    
+    {% comment %} wyglad pasujacy do reszty {% endcomment %}
+    <div class="container bg-gray-800 shadow-md p-5 form layout">
 
-
-
-    <body>
+        <h3> DELETE your account </h3>
 
         <br>
-        
-        {% comment %} wyglad pasujacy do reszty {% endcomment %}
-        <div class="container bg-gray-800 shadow-md p-5 form layout">
+        <br>
 
-            <h3> DELETE your account </h3>
+        <form method="POST" autocomplete="off">
 
+            {% csrf_token %}
+            
+            <p> Are you sure?</p>
 
-            <br>
-            <br>
+            <button type="submit" class="btn btn-secondary btn-lg w-100 btn-clock p-2">
+                &nbsp; DELETE MY ACCOUNT
+            </button>
 
-            <form method="POST" autocomplete="off">
+        </form>
 
-                {% csrf_token %}
-                
-                <p> Are you sure?</p>
+    </div>
 
-                <button type="submit" class="btn btn-secondary btn-lg w-100 btn-clock p-2"> &nbsp; DELETE MY ACCOUNT </button>
-
-
-            </form>
-
-            <div class="container bg-gray-800 shadow-md p-5 form layout">
-
-                
-
-
-
-    </body>
-
-
-
-{% endblock  %}
+{% endblock %}

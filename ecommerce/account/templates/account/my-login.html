@@ -1,69 +1,49 @@
-
-{% comment %} nawiazanie do calego sklepu "stopka u gory" {% endcomment %}
-{% include "store/base.html" %}
-
+{% extends "store/base.html" %}
 
 {% load static %}
-
-
 {% load crispy_forms_tags %}
-
-
 
 {% block content %}
 
+    <br>
+    
+    {% comment %} wyglad pasujacy do reszty {% endcomment %}
+    <div class="container bg-gray-800 shadow-md p-5 form layout">
 
+        <h3> Login to your account </h3>
 
-
-    <body>
-
+        <hr>
         <br>
-        
-        {% comment %} wyglad pasujacy do reszty {% endcomment %}
-        <div class="container bg-gray-800 shadow-md p-5 form layout">
 
-            <h3> Login to your account </h3>
+        <form method="POST" autocomplete="off">
 
-
-            <hr>
+            {% csrf_token %}
+            
             <br>
 
-            <form method="POST" autocomplete="off">
+            {{ form.username|as_crispy_field }}
+            <br>
+            {{ form.password|as_crispy_field }}
+            
+            {% comment %} {{form}}   <--  brzydka forma bez szablonow crispy {% endcomment %}
+            
+            <br>
 
-                {% csrf_token %}
-                
-                <br>
+            <button type="submit" class="btn btn-secondary btn-lg w-100 btn-clock p-2"> 
+                &nbsp; Login 
+            </button>
 
-                {{form.username|as_crispy_field}}
+            {% comment %} WALIDACJA WIADOMOSC POD SPODEM CZEMU ERROR {% endcomment %}
+            {{ form.non_field_errors }}
+            {{ form.username.errors }}
+            {{ form.password.errors }}
 
-                <br>
+            <br>
+            <br>
+            <a href="{% url 'reset_password' %}"> Forgotten your password? </a>
 
-                {{form.password|as_crispy_field}}
-                
-                {% comment %} {{form}}   <--  brzydka forma bez szablonow crispy {% endcomment %}
-                
+        </form>
 
-                <br>
+    </div>
 
-                <button type="submit" class="btn btn-secondary btn-lg w-100 btn-clock p-2"> &nbsp; Login </button>
-
-                {% comment %} WALIDACJA WIADOMOSC POD SPODEM CZEMU ERROR {% endcomment %}
-                {{form.non_field_errors}}
-                {{form.username.errors}}
-                {{form.password.errors}}
-
-                <br>
-                <br>
-                <a href="{% url 'reset_password' %}"> Forgotten your password? </a>
-
-            </form>
-
-
-
-
-
-    </body>
-
-
-
-{% endblock  %}
+{% endblock %}

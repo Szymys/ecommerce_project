@@ -1,257 +1,129 @@
-{% include "store/base.html" %}
-
+{% extends "store/base.html" %}
 
 {% load static %}
-
 {% load mathfilters %}
 
 {% block content %}
 
-
 <main class="pt-5">
     
-    <div class="container">
+  <div class="container">
       
-      <h1 class="h5"> Shopping cart </h1>
-
-	<hr>
+    <h1 class="h5"> Shopping cart </h1>
+    <hr>
       
-  {% for item in cart %}
-
-  {% with product=item.product %}
-
+    {% for item in cart %}
+    {% with product=item.product %}
 
       <br>
 
       <div class="row mb-4 border product-item">
         
         <div class="col-md-3 col-lg-2 order-md-first bg-light">
-        
-            <img class="img-fluid mx-auto d-block" width="200px" alt="Responsive image" src="{{product.image.url}}">
-        
+          <img class="img-fluid mx-auto d-block" width="200px" alt="Responsive image" src="{{ product.image.url }}">
         </div>
 
-        
         <div class="col-md-9 col-lg-10 ps-md-3 ps-lg-10">
           
-          <a href="{{product.get_absolute_url}}" class="text-info text-decoration-none">
-          
-            <h1 class="h5 pt-2"> {{product.title}} </h1>
-          
+          <a href="{{ product.get_absolute_url }}" class="text-info text-decoration-none">
+            <h1 class="h5 pt-2">{{ product.title }}</h1>
           </a>
           
           <div class="border">
             
             <div class="col border-bottom">
-              
-                <div class="row p-3">
-              
-                <div class="col-6"> Product </div>
-              
-                <div class="col-6 text-end"><span class="h6 fw-bold">$ {{product.price|mul:item.qty}}</span></div>
-            
+              <div class="row p-3">
+                <div class="col-6">Product</div>
+                <div class="col-6 text-end"><span class="h6 fw-bold">$ {{ product.price|mul:item.qty }}</span></div>
               </div>
-            
             </div>
             
             <div class="col">
-              
               <div class="row p-3">
-                
                 <div class="col-12">
-                  
                   <label for="select">Qty</label>
-
                   &nbsp; 
-                  
-                  <select id="select{{product.id}}">
-                  
-                    <option selected>
-                  
-                        {{item.qty}}
-                  
-                    </option>
-                  
-                    <option value="">1</option>
-                  
-                    <option value="">2</option>
-                  
-                    <option value="">3</option>
-                  
-                    <option value="">4</option>
-                  
+                  <select id="select{{ product.id }}">
+                    <option selected>{{ item.qty }}</option>
+                    {% for i in "1234" %}
+                      <option value="">{{ i }}</option>
+                    {% endfor %}
                   </select>
-                  
-                  <br> <br>
+                  <br><br>
 
-                  <button type="button" data-index="{{product.id}}"
+                  <button type="button" data-index="{{ product.id }}"
                     class="btn btn-primary btn-sm update-button">
                     Update
-                  
                   </button>
                   
                   &nbsp;
 
-                  <button type="button" data-index="{{product.id}}"
+                  <button type="button" data-index="{{ product.id }}"
                     class="btn btn-danger btn-sm delete-button">
                     Delete
-        
                   </button>
-        
-
                 </div>
-        
+              </div>
             </div>
-        
-            </div>
-    
-            </div>
-    
+
+          </div>
         </div>
-      
-    </div>
-      
+      </div>
 
     {% endwith %}
-
     {% endfor %}
 
-      <div class="col-12 text-end">
-        {% comment %} WYSWIETLANIE CALEJ KWOTY DO ZAPLATY {% endcomment %}
-        <div class="h6 fw-bold"> Sub total: $ <div id="total" class="d-inline-flex"> {{cart.get_total}} </div></div>
- 
-      </div>
- 
-
+    <div class="col-12 text-end">
+      <div class="h6 fw-bold">Sub total: $ <div id="total" class="d-inline-flex">{{ cart.get_total }}</div></div>
     </div>
-  
-      <a href="{% url 'checkout' %}" class="btn btn-primary btn-lg d-block mx-auto"> Proceed to checkout </a>
+
+    <a href="{% url 'checkout' %}" class="btn btn-primary btn-lg d-block mx-auto mt-4">Proceed to checkout</a>
     <br>
 
- </main>
+  </div>
+</main>
 
 <script>
+// Delete button
+$(document).on('click', '.delete-button', function(e) {
+    e.preventDefault();
 
-  //AJAX -  NA ZYWO ODSWIEZA MI KOSZYK
-  //GUZIK DO USUWANIA
-  $(document).on('click', '.delete-button', function(e){
+    $.ajax({
+        type: 'POST',
+        url: '{% url "cart-delete" %}',
+        data: {
+            product_id: $(this).data('index'),
+            csrfmiddlewaretoken: "{{ csrf_token }}",
+            action: 'post'
+        },
+        success: function(json) {
+            location.reload();
+            document.getElementById("cart-qty").textContent = json.qty;
+        }
+    });
+});
 
+// Update button
+$(document).on('click', '.update-button', function(e) {
+    e.preventDefault();
 
-    // CSRF TOEKN TUTAJ A NIE JAK NA KURSIE ???!!!
-        e.preventDefault();
-        csrfmiddlewaretoken:"{{ csrf_token }}"
+    var theproductid = $(this).data('index');
 
-        $.ajax({
-
-            type: 'POST',
-            url: '{% url "cart-delete" %}',
-            data: {
-
-                product_id: $(this).data('index'),
-                csrfmiddlewaretoken: "{{ csrf_token }}",
-                action: 'post'
-
-
-            },
-
-            success: function(json){
-
-                //console.log(json)
-                
-                location.reload();
-
-                //ILOSC W KOSZYKU AKTUALIZUJE
-                document.getElementById("cart-qty").textContent = json.qty
-
-                document.getElementById("cart-qty").textContent = json.total
-
-
-            },
-
-            error: function(xhr, errmsg, err){
-                
-
-            }
-
-
-
-        });
-
-
-
-    })
-
-
-
-  //AJAX -  NA ZYWO ODSWIEZA MI KOSZYK
-  //GUZIK DO UPDATOWANIA
-  $(document).on('click', '.update-button', function(e){
-
-
-    // CSRF TOEKN TUTAJ A NIE JAK NA KURSIE ???!!!
-        e.preventDefault();
-        csrfmiddlewaretoken:"{{ csrf_token }}"
-
-        var theproductid = $(this).data('index');
-
-        $.ajax({
-
-            type: 'POST',
-            url: '{% url "cart-update" %}',
-            data: {
-
-                product_id: $(this).data('index'),
-                product_quantity: $('#select' + theproductid + ' option:selected').text(),
-                csrfmiddlewaretoken: "{{ csrf_token }}",
-                action: 'post'
-
-
-            },
-
-            success: function(json){
-
-                //console.log(json)
-                
-                location.reload(true);
-
-                //ILOSC W KOSZYKU AKTUALIZUJE
-                document.getElementById("cart-qty").textContent = json.qty
-
-                document.getElementById("cart-qty").textContent = json.total
-
-
-            },
-
-            error: function(xhr, errmsg, err){
-                
-
-            }
-
-
-
-        });
-
-
-
-    })
-
-
-
-
-
-
-
-
-
-
-
+    $.ajax({
+        type: 'POST',
+        url: '{% url "cart-update" %}',
+        data: {
+            product_id: theproductid,
+            product_quantity: $('#select' + theproductid + ' option:selected').text(),
+            csrfmiddlewaretoken: "{{ csrf_token }}",
+            action: 'post'
+        },
+        success: function(json) {
+            location.reload(true);
+            document.getElementById("cart-qty").textContent = json.qty;
+        }
+    });
+});
 </script>
 
-
-
-
-
-
-
 {% endblock %}
-

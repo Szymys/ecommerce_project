@@ -1,0 +1,46 @@
+version: '3.9' # WERSJA DOCKER-COMPOSE
+
+services:
+
+  db:
+    image: postgres:16 # TWORZE KONTENER DB NAZWA, UZYTKOWNIK, HASLO ITP
+    env_file:
+      - .env # <--- PLIK Z HASLEM I INNYMI ZMIENNYMI SRODOWISKOWYMI BAZY
+    environment:
+      # Te zmienne mogą być zdefiniowane w .env, ale można też je tu zostawić dla jasności
+      POSTGRES_DB: ecommerce_db
+      POSTGRES_USER: ecommerce_user
+      POSTGRES_PASSWORD: securepassword
+    volumes:
+      - postgres_data_local:/var/lib/postgresql/data # ZAPISUJE DANE BAZY LOKALNIE
+    ports:
+      - "5432:5432" # Opcjonalnie: mapuj port bazy danych na hosta, przydatne np. do połączenia z GUI bazy danych (np. pgAdmin)
+    healthcheck: # Dodatkowy healthcheck, aby upewnić się, że baza jest gotowa przed uruchomieniem aplikacji
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+
+  web: # TWORZE KONTENER APLIKACJI (DJANGO)
+    build: . # Buduj obraz z Dockerfile w bieżącym katalogu
+    # Użyj serwera deweloperskiego Django dla lokalnej pracy z autoreloadem
+    command: python manage.py runserver 0.0.0.0:8000
+    env_file:
+      - .env # <--- PLIK ZE ZMIENNYMI SRODOWISKOWYMI APLIKACJI
+    volumes:
+      - .:/app # Mapowanie bieżącego katalogu projektu na katalog /app w kontenerze (dla autoreloadu i pracy na kodzie)
+      - ./static:/app/static # Mapowanie katalogu static
+      - ./media:/app/media # Mapowanie katalogu media
+      # ./staticfiles nie jest standardowo potrzebne dla runserver, więc można pominąć lub zakomentować:
+      # - ./staticfiles:/app/staticfiles
+    ports:
+      - "8000:8000" # Mapowanie portu aplikacji na hosta
+    depends_on:
+      db: # Upewnij się, że serwis bazy danych jest uruchomiony przed serwisem web
+        condition: service_healthy # Poczekaj aż healthcheck bazy danych będzie pozytywny
+
+
+# Definicje woluminów używanych w serwisach
+volumes:
+  postgres_data_local: # Nazwa woluminu dla lokalnych danych bazy danych

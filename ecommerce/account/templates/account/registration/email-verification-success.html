@@ -1,37 +1,19 @@
-
-{% include "store/base.html" %}
-
+{% extends "store/base.html" %}
 
 {% load static %}
 
-
 {% block content %}
-
-
-<body>
 
     <br>
     
     {% comment %} wyglad pasujacy do reszty {% endcomment %}
     <div class="container bg-gray-800 shadow-md p-5 form layout text-center">
         
-     
-        <span style='font-size:100px;'>&#10004;</span> {% comment %} <- fontawesome.com ikonka{% endcomment %}
-    <br>
-    <br>
-    <h3> <strong> Account is now active </strong> </h3>
+        <span style='font-size:100px;'>&#10004;</span> {% comment %} <- fontawesome.com ikonka {% endcomment %}
+        <br><br>
 
+        <h3><strong> Account is now active </strong></h3>
 
     </div>
-    
-
-</body>
-
 
 {% endblock %}
-
-
-
-
-
- 
