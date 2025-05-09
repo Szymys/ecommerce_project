@@ -1,115 +1,82 @@
-
-{% extends "./base.html" %}
+{% extends "store/base.html" %}
 
 {% load static %}
 
-
 {% block content %}
 
-
-    
-  
+    {% comment %} ************** GÓRNA SEKCJA – BANER Z PRZYCISKIEM ************** {% endcomment %}
     <section class="py-4 text-center container">
 
         <div class="row py-lg-5">
-        
             <div class="col-lg-6 col-md-8 mx-auto">
                 
-
                 <h4> MyShop... Buy the best sportswear in the world today! </h4>
 
-                <hr>
-                <br>
-                
+                <hr><br>
 
                 <p class="lead text-muted">
-
                   Shop with us to find everything you need to stay active and perform at your best!
-
                 </p>
-
 
                 <br>
+
                 {% comment %} {% url 'register' %} przekierowuje do rejestracji ikonka create na srodku {% endcomment %}
-                <a href="{% url 'register' %}" class="btn btn-primary my-2"><i class='fas fa-user-plus' style='font-size:24px'></i> Create an account </a>
-                
-                
+                <a href="{% url 'register' %}" class="btn btn-primary my-2">
+                    <i class='fas fa-user-plus' style='font-size:24px'></i> Create an account
+                </a>
+
             </div>
-        
         </div>
 
-    
     </section>
 
+    {% comment %} ******************OKIENKA Z PRODUKTAMI***************************************************** {% endcomment %}
+    <div class="album py-5 bg-light">
 
+        <div class="container">
 
-    {% comment %} ******************OKIENKA***************************************************** {% endcomment %}
-    
+            <div class="pb-3 h5"> All products </div>
 
+            <hr><br>
 
-      
-   <div class="album py-5 bg-light">
-        
-    <div class="container">
+            {% if my_products %}
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
 
-      <div class="pb-3 h5"> All products </div>
+                    {% for product in my_products %}
 
+                    <div class="col">
+                        <div class="card shadow-sm">
 
-      <hr>
+                            <img class="img-fluid" alt="Responsive image" src="{{ product.image.url }}">
 
-      <br>
-      
+                            <div class="card-body">
 
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+                                <p class="card-text">
+                                    <a class="text-info text-decoration-none" href="{{ product.get_absolute_url }}">
+                                        {{ product.title | capfirst }}
+                                    </a>
+                                </p>
 
-        {% for product in my_products %}
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h5>$ {{ product.price }}</h5>
+                                </div>
 
-          <div class="col">
+                            </div>
 
-            <div class="card shadow-sm">
+                        </div>
+                    </div>
 
-              <img class="img-fluid" alt="Responsive image" src="{{product.image.url}}">
-
-              <div class="card-body">
-
-                <p class="card-text">
-
-                  <a class="text-info text-decoration-none" href="{{product.get_absolute_url}}"> {{ product.title | capfirst }}</a>
-
-                </p>
-
-                <div class="d-flex justify-content-between align-items-center">
-
-                  <h5> $ {{product.price}} </h5>
+                    {% endfor %}
 
                 </div>
+            {% else %}
+                <div class="alert alert-warning text-center">
+                    No products available at the moment.
+                </div>
+            {% endif %}
 
-              </div>
-
-            </div>
-          
-          </div>
-
-        {% endfor %}
-
-      </div>
+        </div>
 
     </div>
 
-  </div>
-
-
-
-
-
-
-
-
-
 {% endblock %}
-
-
-
-
-
-

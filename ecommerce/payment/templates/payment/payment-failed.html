@@ -1,49 +1,27 @@
-
-
-{% include "store/base.html" %}
+{% extends "store/base.html" %}
 
 {% load static %}
 
-
 {% block content %}
-
-
-
 
     <br>
 
+    <div class="container bg-gray-800 shadow-md p-5 form layout text-center">
 
+        <i class="text-danger fa fa-credit-card-alt fa-3x" aria-hidden="true"></i>
 
-        <div class="text-center">
-            
+        <br><br>
 
+        <h5><strong> Payment failed! </strong></h5>
 
-            <i class="text-failed fa fa-credit-card-alt fa-3x" aria-hidden="true"></i>
+        <hr>
 
-            <br> <br>
-   
+        <p>Your order could not be completed. Please try again or contact support.</p>
 
+        <br>
 
-
-            <h5> <strong> Payment failed! </strong> </h5>
-
-            <hr>
-
-
-
-            <p> Your order failed  </p>
-
-
-        </div>
+        <a href="{% url 'cart-summary' %}" class="btn btn-outline-light">Back to cart</a>
 
     </div>
 
-
-
 {% endblock %}
-
-
-
-
-
-

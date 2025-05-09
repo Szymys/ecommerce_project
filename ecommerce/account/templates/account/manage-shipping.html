@@ -1,22 +1,9 @@
-
-{% comment %} nawiazanie do calego sklepu "stopka u gory" {% endcomment %}
-{% include "store/base.html" %}
-
+{% extends "store/base.html" %}
 
 {% load static %}
-
-
 {% load crispy_forms_tags %}
 
-
-
 {% block content %}
-
-
-
-
-
-<body>
 
     <br>
     
@@ -35,58 +22,28 @@
             
             <br>
 
-            {{form.full_name|as_crispy_field}}
-
+            {{ form.full_name|as_crispy_field }}
             <br>
-
-            {{form.email|as_crispy_field}}
-
+            {{ form.email|as_crispy_field }}
             <br>
-
-            {{form.address1|as_crispy_field}}
-
+            {{ form.address1|as_crispy_field }}
             <br>
-
-            {{form.address2|as_crispy_field}}
-
+            {{ form.address2|as_crispy_field }}
             <br>
-
-            {{form.city|as_crispy_field}}
-
+            {{ form.city|as_crispy_field }}
             <br>
-
-            {{form.state|as_crispy_field}}
-
+            {{ form.state|as_crispy_field }}
             <br>
-
-            {{form.zipcode|as_crispy_field}}
+            {{ form.zipcode|as_crispy_field }}
             
-            {% comment %} {{form}}   <--  brzydka forma bez szablonow crispy {% endcomment %}
-            
-
             <br>
 
-            <button type="submit" class="btn btn-secondary btn-lg w-100 btn-clock p-2"> &nbsp; Update address </button>
-
+            <button type="submit" class="btn btn-secondary btn-lg w-100 btn-clock p-2">
+                &nbsp; Update address
+            </button>
 
         </form>
 
+    </div>
 
-
-
-
-</body>
-
-
-
-{% endblock  %}
-
-
-
-
-
-
-
-
-
-
+{% endblock %}
