@@ -6,6 +6,10 @@ from cart.cart import Cart
 
 from django.http import JsonResponse
 
+
+from payment.models import ShippingAddress
+
+
 # zamowione 
 def payment_success(request):
 
@@ -27,9 +31,16 @@ def payment_failed(request):
 
 
 # realizacja transakcji
-def checkout(request):
 
-    return render(request, 'payment/checkout.html')
+def checkout(request):
+    address = None
+
+    if request.user.is_authenticated:
+        address = ShippingAddress.objects.filter(user=request.user).first()
+
+    return render(request, 'payment/checkout.html', {
+        'address': address
+    })
 
 
 
