@@ -23,32 +23,33 @@
                 <br>
 
                 <div class="mb-3">
-                    <input class="form-control" id="name" type="text" placeholder="Full name*" autocomplete="off" required>
+                    <input class="form-control" id="name" type="text" placeholder="Full name*" autocomplete="off" required value="{{ address.full_name }}">
                 </div>
 
                 <div class="mb-3">
-                    <input class="form-control" id="email" type="email" placeholder="Email address*" autocomplete="off" required>
+                    <input class="form-control" id="email" type="email" placeholder="Email address*" autocomplete="off" required value="{{ address.email }}">
                 </div>
 
                 <div class="mb-3">
-                    <input class="form-control" id="address1" type="text" placeholder="Address 1*" autocomplete="off" required>
+                    <input class="form-control" id="address1" type="text" placeholder="Address 1*" autocomplete="off" required value="{{ address.address1 }}">
                 </div>
 
                 <div class="mb-3">
-                    <input class="form-control" id="address2" type="text" placeholder="Address 2*" autocomplete="off">
+                    <input class="form-control" id="address2" type="text" placeholder="Address 2*" autocomplete="off" value="{{ address.address2 }}">
                 </div>
 
                 <div class="mb-3">
-                    <input class="form-control" id="city" type="text" placeholder="City*" autocomplete="off" required>
+                    <input class="form-control" id="city" type="text" placeholder="City*" autocomplete="off" required value="{{ address.city }}">
                 </div>
 
                 <div class="mb-3">
-                    <input class="form-control" id="state" type="text" placeholder="State (Optional)" autocomplete="off">
+                    <input class="form-control" id="state" type="text" placeholder="State (Optional)" autocomplete="off" value="{{ address.state }}">
                 </div>
 
                 <div class="mb-3">
-                    <input class="form-control" id="zipcode" type="text" placeholder="Zip code (Optional)" autocomplete="off">
+                    <input class="form-control" id="zipcode" type="text" placeholder="Zip code (Optional)" autocomplete="off" value="{{ address.zipcode }}">
                 </div>
+
 
             </div>
 
