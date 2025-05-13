@@ -39,22 +39,24 @@
 
 ## ⚙️ Quick Start (Local Dev)
 
+```bash
 # 1. Clone the repo
 https://github.com/Szymys/ecommerce_project
 
 # 2. Create a .env file (in project root, same level as docker-compose.local.yml)
 # Here's an example of what to put in it:
 
-# SECRET_KEY=your_secret_key
-# DEBUG=True
-# POSTGRES_DB=ecommerce_db
-# POSTGRES_USER=ecommerce_user
-# POSTGRES_PASSWORD=securepassword
-# EMAIL_HOST=smtp.gmail.com
-# EMAIL_PORT=587
-# EMAIL_USE_TLS=True
-# EMAIL_HOST_USER=your.email@gmail.com
-# EMAIL_HOST_PASSWORD=your_app_password
+SECRET_KEY=your_secret_key
+DEBUG=True
+POSTGRES_DB=ecommerce_db
+POSTGRES_USER=ecommerce_user
+POSTGRES_PASSWORD=securepassword
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+EMAIL_HOST_USER=your.email@gmail.com
+EMAIL_HOST_PASSWORD=your_app_password
 
 # 3. Run the app with Docker
 docker-compose -f docker-compose.local.yml up --build
+
