@@ -2,6 +2,8 @@
 
 **Django-based e-commerce app** built with Docker, PostgreSQL, and deployed to a remote Ubuntu VPS with Nginx and HTTPS support.
 
+![Screenshot - Homepage](https://raw.githubusercontent.com/Szymys/ecommerce_project/main/ecommerce/static/media/images/GLOWNA.png)
+
 ## 🔧 Stack
 
 - **Backend**: Django 5, Python 3.12
@@ -13,31 +15,26 @@
 
 ## 🌐 Live Demo
 
-**🔗 [www.szymys-ecommerce.online](https://www.szymys-ecommerce.online/)**  
-(Demo account available in Admin section below)
+🔗 [www.szymys-ecommerce.online](https://www.szymys-ecommerce.online)
 
 ---
 
 ## 🚀 Features
 
 - 🛒 Product listing, categories, cart, checkout
-- 🔒 User authentication (login/register)
-- 🧑‍💻 Admin panel for product management
-- 📦 Static/media file handling via Nginx
+- 🔒 User authentication (login/register + email activation link)
+- ✅ Form validation with custom error messages
+- 👤 **User Panel** with:
+  - 🧾 Order history
+  - 🏠 Delivery address
+  - ✏️ Email & personal data update
+- 🧑‍💻 **Admin panel** for:
+  - Managing products & categories
+  - Viewing and managing user orders
+  - Editing user accounts
+- 📬 Activation email sent on registration
 - 🐳 Fully containerized with Docker
+- 📦 Static/media file handling via Nginx
 
 ---
 
-## 📸 Screenshots
-
-> Dodaj 2–3 zrzuty ekranu (homepage, produkt, admin panel) – żeby pokazać UI
-
----
-
-## 🐳 Local Development (Docker)
-
-### 1. Clone the repo
-
-```bash
-git clone https://github.com/Szymys/ecommerce_project.git
-cd ecommerce_project
