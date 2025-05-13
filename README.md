@@ -1,5 +1,7 @@
 # 🛍️ Szymys E-commerce
 
+## 🌐 Live Demo
+🔗 [www.szymys-ecommerce.online](https://www.szymys-ecommerce.online)
 **Django-based e-commerce app** built with Docker, PostgreSQL, and deployed to a remote Ubuntu VPS with Nginx and HTTPS support.
 
 ![Screenshot - Homepage](https://raw.githubusercontent.com/Szymys/ecommerce_project/main/ecommerce/static/media/images/GLOWNA.png)
@@ -12,10 +14,6 @@
 - **Web server**: Nginx (with HTTPS via Certbot)
 - **Deployment**: Docker & Docker Compose
 - **Hosting**: Contabo VPS (Ubuntu 22.04)
-
-## 🌐 Live Demo
-
-🔗 [www.szymys-ecommerce.online](https://www.szymys-ecommerce.online)
 
 ---
 
@@ -37,4 +35,3 @@
 - 📦 Static/media file handling via Nginx
 
 ---
-
