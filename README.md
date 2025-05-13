@@ -1,90 +1,43 @@
-# Ecommerce Website (Django/javascript)
+# 🛍️ Szymys E-commerce
 
-![Django Ecommerce Store](https://raw.githubusercontent.com/Szymys/ecommerce_project/main/ecommerce/img/shop.png)
+**Django-based e-commerce app** built with Docker, PostgreSQL, and deployed to a remote Ubuntu VPS with Nginx and HTTPS support.
 
+## 🔧 Stack
 
-Full-featured shopping cart with PayPal & credit/debit payments
+- **Backend**: Django 5, Python 3.12
+- **Frontend**: Bootstrap 5 (Dark Theme)
+- **Database**: PostgreSQL
+- **Web server**: Nginx (with HTTPS via Certbot)
+- **Deployment**: Docker & Docker Compose
+- **Hosting**: Contabo VPS (Ubuntu 22.04)
 
-Product rating & review system
+## 🌐 Live Demo
 
-An actual real-world project built in a linear and progressive manner
+**🔗 [www.szymys-ecommerce.online](https://www.szymys-ecommerce.online/)**  
+(Demo account available in Admin section below)
 
-Admin area to manage customers, products & orders
+---
 
-Product search, carousel, pagination & more
+## 🚀 Features
 
+- 🛒 Product listing, categories, cart, checkout
+- 🔒 User authentication (login/register)
+- 🧑‍💻 Admin panel for product management
+- 📦 Static/media file handling via Nginx
+- 🐳 Fully containerized with Docker
 
-<br>
+---
 
+## 📸 Screenshots
 
-## How to install on Windows
-1. clone this project
-2. install virtualenv
-```
-pip install virtualenv
-```
-3. create new virtual environment
-```
-py -m venv venv
-```
-4. activate the new virtual
-```
-.\venv\Scripts\activate
-```
-5. install requirements.txt
-```
-pip install -r requirements.txt
-```
-6. run local server to begin
- ```
- py manage.py runserver
- ```
- 7. go live with [localhost:8000](http://localhost:8000/)
- 
- ### To install on Unix/macOS  [see this document](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments)
- 
- 
- <br>
- 
- 
- 
- ## To add new products and access admin panel 
- 1. run on trimnal 
- ```
- py manage.py createsuperuser
- ```
- 2. create new admin user
- 2. go to [localhost:8000/admin](http://localhost:8000/admin)
+> Dodaj 2–3 zrzuty ekranu (homepage, produkt, admin panel) – żeby pokazać UI
 
+---
 
-## Some of feature in this store
+## 🐳 Local Development (Docker)
 
-- Full-featured shopping cart
-- Review and Rating System
-- Top products carousel
-- Product pagination
-- Product search feature
-- User profile with orders
-- Admin product management
-- Admin Order details page
-- Mark orders as a delivered option
-- Checkout process (shipping, payment method, etc... )
-- PayPal / Credit Card integration
-- Category Filter
-- Addition of variable products    
-- Post on your blog
-- Contact page
-- Professional and modern website design with matching colors
-- An unlimited number of products and categories
-- Unlimited pages 
-- Easy to manage the site
+### 1. Clone the repo
 
-
-
-### Need help? Found a bug? Message me!
-
-
-
-<br>
-
-### Enjoy^^
+```bash
+git clone https://github.com/Szymys/ecommerce_project.git
+cd ecommerce_project
