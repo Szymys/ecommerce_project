@@ -10,7 +10,7 @@
 ## 🔧 Stack
 
 - **Backend**: Django 5, Python 3.12
-- **Frontend**: Bootstrap 5 (Dark Theme)
+- **Frontend**: Bootstrap 5 
 - **Database**: PostgreSQL
 - **Web server**: Nginx (with HTTPS via Certbot)
 - **Deployment**: Docker & Docker Compose
