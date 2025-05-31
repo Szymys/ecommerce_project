@@ -57,20 +57,15 @@ EMAIL_USE_TLS=True
 EMAIL_HOST_USER=your.email@gmail.com
 EMAIL_HOST_PASSWORD=your_app_password
 
-# 3. Zbuduj obrazy Dockera 
+# 3. Build Docker images
 docker-compose -f docker-compose.local.yml build
 
-# 4. Odpal kontenery w tle
+# 4. Start containers in the background
 docker-compose -f docker-compose.local.yml up -d
 
-# 5. Wejdź do kontenera z aplikacją (Django)
+# 5. Enter the Django container
 docker-compose -f docker-compose.local.yml exec web bash
 
-# 6. Zrób migracje (tworzy tabele w bazie)
+# 6. Make migrations (create tables in the database)
 python manage.py makemigrations
 python manage.py migrate
-
-# 7. Sprawdź aplikację:
-# http://localhost:8000
-
-
